@@ -1,0 +1,91 @@
+/* style.scss */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #141414; /* Dark background color */
+    color: #ffffff; /* White text color */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 50px auto;
+    background-color: #000; /* Dark background color for the container */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners for the container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Box shadow for a subtle lift */
+}
+
+h1, h2, h4 {
+    color: #e50914; /* Netflix red color */
+}
+
+.list-group-item {
+    background-color: #1f1f1f; /* Darker background color for items */
+    border: 1px solid #333; /* Dark border */
+    transition: background-color 0.3s;
+    margin-bottom: 15px; /* Add space between list items */
+    padding: 15px; /* Add padding to list items */
+    border-radius: 5px; /* Rounded corners for list items */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Box shadow for a subtle lift */
+}
+
+.list-group-item:hover {
+    background-color: #2c2c2c; /* Slightly lighter background on hover */
+}
+
+.pagination {
+    justify-content: center;
+    margin-top: 20px; /* Add some space above pagination */
+}
+
+/* Add styling for recommendations */
+.list-group.recommendations {
+    background-color: #333; /* Dark background for recommendations */
+    color: #ffffff; /* White text color */
+    margin-top: 20px;
+    padding: 15px; /* Add padding to recommendations */
+    border-radius: 5px; /* Rounded corners for recommendations */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Box shadow for a subtle lift */
+}
+
+/* Add styling for details in the list-group-item */
+.list-group-item p {
+    color: #b8b8b8; /* Lighter text color for details */
+}
+
+/* Add styling for the container background */
+.container-background {
+    background: linear-gradient(to bottom, #000, #141414); /* Gradient background */
+    min-height: 100vh; /* Set minimum height for gradient background */
+}
+
+/* Add styling for the navigation links */
+.pagination a {
+    color: #e50914; /* Netflix red color for pagination links */
+}
+
+/* Additional styles for inline details */
+.list-group-item .details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.list-group-item .details p {
+    width: 48%; /* Adjust width as needed */
+}
+
+/* Additional styles for the recommendations list */
+.recommendations-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.recommendations-list li {
+    margin-bottom: 10px;
+}
+
+/* Additional styles for icon */
+.icon {
+    margin-right: 10px;
+}

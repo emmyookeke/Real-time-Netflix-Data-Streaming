@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Data Dashboard</title>
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Add custom SCSS styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container-background">
+        <div class="container mt-5">
+            <h1 class="mb-4">Netflix Data Dashboard</h1>
+
+            <!-- Form for filtering -->
+            <form action="{{ url_for('index') }}" method="GET" class="mb-3">
+                <div class="form-row">
+                    <div class="col-md-4 mb-2">
+                        <label for="directorFilter">Filter by Director:</label>
+                        <input type="text" class="form-control" id="directorFilter" name="directorFilter" value="{{ filter_director }}">
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <label for="castFilter">Filter by Cast:</label>
+                        <input type="text" class="form-control" id="castFilter" name="castFilter" value="{{ filter_cast }}">
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary">Apply Filters</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <h2 class="mb-3"><i class="icon fas fa-film"></i> Latest Shows and Movies</h2>
+                    <ul class="list-group">
+                        {% for message in messages %}
+                            {% if (not filter_director or message.get("director") == filter_director) and
+                                  (not filter_cast or message.get("cast") == filter_cast) %}
+                                <li class="list-group-item">
+                                    <h4>{{ message.title }} <small>{{ message.type }}</small></h4>
+                                    <div class="details">
+                                        <p><strong>Director:</strong> {{ message.director }}</p>
+                                        <p><strong>Cast:</strong> {{ message.cast }}</p>
+                                        <p><strong>Country:</strong> {{ message.country }}</p>
+                                        <p><strong>Date Added:</strong> {{ message.date_added }}</p>
+                                        <p><strong>Release Year:</strong> {{ message.release_year }}</p>
+                                        <p><strong>Rating:</strong> {{ message.rating }}</p>
+                                        <p><strong>Duration:</strong> {{ message.duration }}</p>
+                                        <p><strong>Genres:</strong> {{ message.listed_in }}</p>
+                                    </div>
+                                    <p><strong>Description:</strong> {{ message.description }}</p>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+
+                    <!-- Pagination -->
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination mt-4">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-md-4">
+                    <h2 class="mb-3"><i class="icon fas fa-star"></i> Top 5 Recommendations</h2>
+                    <ul class="list-group recommendations-list">
+                        {% for recommendation in recommendations %}
+                            <li class="list-group-item">{{ recommendation }}</li>
+                        {% endfor %}
+                    </ul>
+                    <div class="trending-arrow">
+                        <!-- Add an arrow or chart icon for trending recommendations -->
+                        <i class="icon fas fa-chart-line"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and Popper.js scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
